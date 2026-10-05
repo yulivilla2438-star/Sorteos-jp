@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sorteos JP</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f5f5f5;
+  color:#222;
+}
+header{
+  background:#111;
+  color:white;
+  text-align:center;
+  padding:22px 10px;
+}
+h1{margin:0;font-size:32px}
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:20px;
+}
+.card{
+  background:white;
+  border-radius:18px;
+  padding:20px;
+  margin-bottom:20px;
+  box-shadow:0 3px 12px #0002;
+}
+input{
+  width:100%;
+  box-sizing:border-box;
+  padding:13px;
+  margin:7px 0 15px;
+  border:1px solid #ccc;
+  border-radius:10px;
+  font-size:16px;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:8px;
+}
+.numero{
+  border:0;
+  border-radius:10px;
+  padding:13px 5px;
+  font-weight:bold;
+  background:#eee;
+  cursor:pointer;
+}
+.numero.vendido{
+  background:#222;
+  color:white;
+}
+button{
+  border:0;
+  border-radius:10px;
+  padding:12px 18px;
+  font-weight:bold;
+  cursor:pointer;
+}
+.whatsapp{
+  background:#25D366;
+  color:white;
+}
+.info{
+  text-align:center;
+  font-size:18px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🎟️ SORTEOS JP</h1>
+  <p>Premios a elección</p>
+</header>
+
+<div class="container">
+
+  <div class="card">
+    <h2>🎁 Premio a elección</h2>
+
+    <label>Descripción del premio</label>
+    <input id="premio" value="Premio a elección">
+
+    <label>Precio por numerito</label>
+    <input id="precio" type="number" value="2000">
+
+    <h3>💳 Alias</h3>
+    <p><b>JPChoco1</b></p>
+    <p>Juan Pablo Chocobar — Ualá</p>
+  </div>
+
+  <div class="card">
+    <h2>🔢 Números</h2>
+
+    <div class="info">
+      Disponibles: <b id="disponibles">100</b><br>
+      Vendidos: <b id="vendidos">0</b>
+    </div>
+
+    <br>
+
+    <div class="grid" id="numeros"></div>
+  </div>
+
+  <div class="card">
+    <h2>📲 Compartir</h2>
+
+    <button class="whatsapp" onclick="compartir()">
+      Compartir por WhatsApp
+    </button>
+  </div>
+
+</div>
+
+<script>
+
+const contenedor = document.getElementById("numeros");
+let vendidos = JSON.parse(localStorage.getItem("sorteosJP")) || [];
+
+function mostrarNumeros(){
+
+  contenedor.innerHTML="";
+
+  for(let i=1;i<=100;i++){
+
+    const boton=document.createElement("button");
+
+    boton.textContent=i;
+
+    boton.className="numero";
+
+    if(vendidos.includes(i)){
+      boton.classList.add("vendido");
+    }
+
+    boton.onclick=function(){
+
+      if(vendidos.includes(i)){
+        vendidos=vendidos.filter(n=>n!==i);
+      }else{
+        vendidos.push(i);
+      }
+
+      localStorage.setItem("sorteosJP",JSON.stringify(vendidos));
+
+      mostrarNumeros();
+    };
+
+    contenedor.appendChild(boton);
+  }
+
+  document.getElementById("vendidos").textContent=vendidos.length;
+  document.getElementById("disponibles").textContent=100-vendidos.length;
+}
+
+function compartir(){
+
+  const premio=document.getElementById("premio").value;
+  const precio=document.getElementById("precio").value;
+
+  const texto=
+  "🎟️ SORTEOS JP 🎟️%0A%0A"+
+  "🎁 "+premio+"%0A"+
+  "💰 Numerito: $"+precio+"%0A"+
+  "💳 Alias: JPChoco1%0A%0A"+
+  "📲 Consultá los números disponibles.";
+
+  window.open("https://wa.me/?text="+texto,"_blank");
+}
+
+mostrarNumeros();
+
+</script>
+
+</body>
+</html>
