@@ -6,229 +6,58 @@
 <title>Sorteos JP</title>
 
 <style>
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  color:#44245f;
-  min-height:100vh;
-  background:
-    radial-gradient(circle at 20% 15%,#ffffff 0%,transparent 20%),
-    radial-gradient(circle at 85% 80%,#f7c8ff 0%,transparent 25%),
-    linear-gradient(135deg,#ead7ff,#c59aff,#f4d5ff,#b987ed);
-  overflow-x:hidden;
+margin:0;
+font-family:Arial,sans-serif;
+color:#44245f;
+min-height:100vh;
+background:linear-gradient(135deg,#ead7ff,#c59aff,#f4d5ff,#b987ed);
+overflow-x:hidden;
 }
 
-/* MARIPOSAS CON BRILLO */
 .mariposa{
-  position:fixed;
-  z-index:0;
-  font-size:42px;
-  opacity:.85;
-  pointer-events:none;
-  filter:
-    drop-shadow(0 0 5px #fff)
-    drop-shadow(0 0 12px #eaa7ff)
-    drop-shadow(0 0 22px #c66cff);
-  animation:volar 5s ease-in-out infinite;
+position:fixed;
+z-index:0;
+font-size:45px;
+filter:drop-shadow(0 0 6px white) drop-shadow(0 0 15px #eaa7ff) drop-shadow(0 0 25px #c66cff);
+animation:volar 5s ease-in-out infinite;
 }
 
-.m1{
-  top:8%;
-  left:5%;
-  color:#dca4ff;
-}
-
-.m2{
-  top:20%;
-  right:6%;
-  font-size:34px;
-  animation-delay:1s;
-}
-
-.m3{
-  top:48%;
-  left:3%;
-  font-size:30px;
-  animation-delay:2s;
-}
-
-.m4{
-  top:65%;
-  right:5%;
-  font-size:45px;
-  animation-delay:3s;
-}
-
-.m5{
-  top:86%;
-  left:12%;
-  font-size:32px;
-  animation-delay:1.5s;
-}
+.m1{top:8%;left:5%}
+.m2{top:22%;right:6%;animation-delay:1s}
+.m3{top:48%;left:3%;font-size:35px;animation-delay:2s}
+.m4{top:67%;right:5%;animation-delay:3s}
+.m5{top:86%;left:12%;font-size:35px;animation-delay:1.5s}
 
 @keyframes volar{
-  0%,100%{
-    transform:translateY(0) rotate(-5deg) scale(1);
-  }
-  50%{
-    transform:translateY(-18px) rotate(7deg) scale(1.08);
-  }
+0%,100%{transform:translateY(0) rotate(-5deg) scale(1)}
+50%{transform:translateY(-18px) rotate(7deg) scale(1.1)}
 }
 
-/* DESTELLOS */
 .brillo{
-  position:fixed;
-  z-index:0;
-  color:#fff;
-  font-size:25px;
-  text-shadow:
-    0 0 5px #fff,
-    0 0 12px #f0aaff,
-    0 0 20px #bd65ff;
-  animation:brillar 2s infinite alternate;
+position:fixed;
+color:white;
+font-size:28px;
+z-index:0;
+text-shadow:0 0 6px white,0 0 15px #f0aaff,0 0 25px #bd65ff;
+animation:brillar 2s infinite alternate;
 }
 
-.b1{top:12%;left:25%;}
-.b2{top:30%;right:25%;animation-delay:.5s;}
-.b3{top:55%;left:20%;animation-delay:1s;}
-.b4{top:78%;right:20%;animation-delay:1.5s;}
+.b1{top:12%;left:25%}
+.b2{top:30%;right:25%;animation-delay:.5s}
+.b3{top:55%;left:20%;animation-delay:1s}
+.b4{top:78%;right:20%;animation-delay:1.5s}
 
 @keyframes brillar{
-  from{opacity:.35;transform:scale(.8);}
-  to{opacity:1;transform:scale(1.25);}
+from{opacity:.3;transform:scale(.8)}
+to{opacity:1;transform:scale(1.3)}
 }
 
 header{
-  position:relative;
-  z-index:2;
-  text-align:center;
-  padding:38px 15px 30px;
-  background:
-    linear-gradient(135deg,#7133a5,#a84ed1,#d78cff,#8e49c5);
-  color:white;
-  border-radius:0 0 40px 40px;
-  box-shadow:
-    0 8px 30px #54206c88,
-    inset 0 -2px 0 #ffffff55;
-}
-
-header h1{
-  margin:5px 0;
-  font-size:36px;
-  letter-spacing:1px;
-  text-shadow:
-    0 2px 5px #42145c,
-    0 0 15px #fff;
-}
-
-header p{
-  margin:10px 0 0;
-  font-size:19px;
-  text-shadow:0 0 8px #fff;
-}
-
-.mariposas-header{
-  font-size:32px;
-  filter:
-    drop-shadow(0 0 5px white)
-    drop-shadow(0 0 12px #ffb4ff)
-    drop-shadow(0 0 20px #d875ff);
-  animation:brillar 2s infinite alternate;
-}
-
-.container{
-  position:relative;
-  z-index:2;
-  width:92%;
-  max-width:850px;
-  margin:25px auto;
-}
-
-.card{
-  background:#ffffffed;
-  border:2px solid #e5c4ff;
-  border-radius:27px;
-  padding:22px;
-  margin-bottom:22px;
-  box-shadow:
-    0 10px 30px #63348644,
-    0 0 15px #ffffff88;
-  backdrop-filter:blur(8px);
-}
-
-.card h2{
-  margin-top:0;
-  color:#7134a4;
-  text-align:center;
-  text-shadow:0 0 8px #e8b8ff;
-}
-
-label{
-  display:block;
-  font-weight:bold;
-  margin-top:15px;
-  color:#63348a;
-}
-
-input{
-  width:100%;
-  padding:14px;
-  margin-top:7px;
-  border:2px solid #d5b5ef;
-  border-radius:15px;
-  font-size:17px;
-  outline:none;
-  background:#fffaff;
-}
-
-input:focus{
-  border-color:#a24bdb;
-  box-shadow:0 0 12px #d89cff;
-}
-
-.alias{
-  margin-top:20px;
-  padding:16px;
-  border-radius:20px;
-  background:linear-gradient(135deg,#f5e5ff,#dfbdff);
-  border:1px solid #d29cff;
-  text-align:center;
-  box-shadow:0 0 15px #d58cff55;
-}
-
-.alias strong{
-  font-size:21px;
-  color:#65258f;
-}
-
-.info{
-  text-align:center;
-  font-size:18px;
-  margin:15px 0 20px;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:9px;
-}
-
-.numero{
-  border:2px solid #dfc5f5;
-  border-radius:14px;
-  padding:13px 4px;
-  background:linear-gradient(145deg,#fffaff,#f0ddff);
-  color:#572276;
-  font-size:16px;
-  font-weight:bold;
-  cursor:pointer;
-  box-shadow:0 3px 8px #63348622;
-  transition:.2s;
-}
-
-.numero:active{
- 
+position:relative;
+z-index:2;
+text-align:center;
+padding:38px 15px 30px;
+background:linear-gradient(135deg,#7133a5,#a84ed
