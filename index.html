@@ -6,180 +6,67 @@
 <title>Sorteos JP</title>
 
 <style>
+*{
+  box-sizing:border-box;
+}
+
 body{
   margin:0;
   font-family:Arial,sans-serif;
-  background:#f5f5f5;
-  color:#222;
+  color:#3d2850;
+  background:
+    radial-gradient(circle at 10% 10%, #ffffffaa 0 5%, transparent 6%),
+    linear-gradient(135deg,#eadcff,#cda7ff,#f1e5ff,#b985ed);
+  min-height:100vh;
 }
-header{
-  background:#111;
-  color:white;
-  text-align:center;
-  padding:22px 10px;
-}
-h1{margin:0;font-size:32px}
-.container{
-  max-width:900px;
-  margin:auto;
-  padding:20px;
-}
-.card{
-  background:white;
-  border-radius:18px;
-  padding:20px;
-  margin-bottom:20px;
-  box-shadow:0 3px 12px #0002;
-}
-input{
+
+body::before{
+  content:"🦋  ✨  🦋  ✨  🦋";
+  position:fixed;
+  top:20px;
+  left:0;
   width:100%;
-  box-sizing:border-box;
-  padding:13px;
-  margin:7px 0 15px;
-  border:1px solid #ccc;
-  border-radius:10px;
-  font-size:16px;
-}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:8px;
-}
-.numero{
-  border:0;
-  border-radius:10px;
-  padding:13px 5px;
-  font-weight:bold;
-  background:#eee;
-  cursor:pointer;
-}
-.numero.vendido{
-  background:#222;
-  color:white;
-}
-button{
-  border:0;
-  border-radius:10px;
-  padding:12px 18px;
-  font-weight:bold;
-  cursor:pointer;
-}
-.whatsapp{
-  background:#25D366;
-  color:white;
-}
-.info{
   text-align:center;
-  font-size:18px;
-}
-</style>
-</head>
-
-<body>
-
-<header>
-  <h1>🎟️ SORTEOS JP</h1>
-  <p>Premios a elección</p>
-</header>
-
-<div class="container">
-
-  <div class="card">
-    <h2>🎁 Premio a elección</h2>
-
-    <label>Descripción del premio</label>
-    <input id="premio" value="Premio a elección">
-
-    <label>Precio por numerito</label>
-    <input id="precio" type="number" value="2000">
-
-    <h3>💳 Alias</h3>
-    <p><b>JPChoco1</b></p>
-    <p>Juan Pablo Chocobar — Ualá</p>
-  </div>
-
-  <div class="card">
-    <h2>🔢 Números</h2>
-
-    <div class="info">
-      Disponibles: <b id="disponibles">100</b><br>
-      Vendidos: <b id="vendidos">0</b>
-    </div>
-
-    <br>
-
-    <div class="grid" id="numeros"></div>
-  </div>
-
-  <div class="card">
-    <h2>📲 Compartir</h2>
-
-    <button class="whatsapp" onclick="compartir()">
-      Compartir por WhatsApp
-    </button>
-  </div>
-
-</div>
-
-<script>
-
-const contenedor = document.getElementById("numeros");
-let vendidos = JSON.parse(localStorage.getItem("sorteosJP")) || [];
-
-function mostrarNumeros(){
-
-  contenedor.innerHTML="";
-
-  for(let i=1;i<=100;i++){
-
-    const boton=document.createElement("button");
-
-    boton.textContent=i;
-
-    boton.className="numero";
-
-    if(vendidos.includes(i)){
-      boton.classList.add("vendido");
-    }
-
-    boton.onclick=function(){
-
-      if(vendidos.includes(i)){
-        vendidos=vendidos.filter(n=>n!==i);
-      }else{
-        vendidos.push(i);
-      }
-
-      localStorage.setItem("sorteosJP",JSON.stringify(vendidos));
-
-      mostrarNumeros();
-    };
-
-    contenedor.appendChild(boton);
-  }
-
-  document.getElementById("vendidos").textContent=vendidos.length;
-  document.getElementById("disponibles").textContent=100-vendidos.length;
+  font-size:25px;
+  opacity:.65;
+  pointer-events:none;
 }
 
-function compartir(){
-
-  const premio=document.getElementById("premio").value;
-  const precio=document.getElementById("precio").value;
-
-  const texto=
-  "🎟️ SORTEOS JP 🎟️%0A%0A"+
-  "🎁 "+premio+"%0A"+
-  "💰 Numerito: $"+precio+"%0A"+
-  "💳 Alias: JPChoco1%0A%0A"+
-  "📲 Consultá los números disponibles.";
-
-  window.open("https://wa.me/?text="+texto,"_blank");
+header{
+  text-align:center;
+  padding:55px 15px 30px;
+  background:linear-gradient(135deg,#6e32a8,#a85de0,#d7b4ff);
+  color:white;
+  border-radius:0 0 35px 35px;
+  box-shadow:0 5px 20px #5b287755;
 }
 
-mostrarNumeros();
+header h1{
+  margin:0;
+  font-size:36px;
+  text-shadow:0 3px 5px #4b216b88;
+}
 
-</script>
+header p{
+  margin:10px 0 0;
+  font-size:19px;
+}
 
-</body>
-</html>
+.container{
+  width:92%;
+  max-width:850px;
+  margin:25px auto;
+}
+
+.card{
+  background:#ffffffee;
+  border:2px solid #e2c8ff;
+  border-radius:25px;
+  padding:22px;
+  margin-bottom:22px;
+  box-shadow:0 8px 25px #6c3b8833;
+}
+
+.card h2{
+  margin-top:0;
+  color:#7134a4;
